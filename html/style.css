@@ -30,7 +30,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.15); /* Hafif karartma, FiveM CEF siyah ekran hatasını önler */
+    background: rgba(255, 255, 255, 0.089); /* Hafif karartma, FiveM CEF siyah ekran hatasını önler */
     transition: opacity 0.5s ease;
 }
 
@@ -46,16 +46,16 @@ body {
     
     /* Fırçalanmış Paslanmaz Çelik (Brushed Metal) Efekti */
     background: linear-gradient(135deg, 
-        #eaeaea 0%, 
-        #dcdcdc 20%, 
-        #b5b5b5 45%, 
-        #8e8e8e 50%, 
-        #b5b5b5 55%, 
-        #e3e3e3 80%, 
-        #f0f0f0 100%
+        #302f2fde 0%, 
+        #302f2fde 20%, 
+        #302f2fde 45%, 
+        #302f2fde 50%, 
+        #302f2fde 55%, 
+        #302f2fde 80%, 
+        #302f2fde 100%
     );
     background-size: 300% 300%;
-    border: 3px solid #7c7c7c;
+    border: 4px solid #000000;
     box-shadow: 
         inset 0 2px 5px rgba(255,255,255,0.7),
         inset 0 -2px 5px rgba(0,0,0,0.4),
@@ -190,7 +190,7 @@ body {
 .elevator-title {
     font-size: 11px;
     font-weight: 800;
-    color: #4a4a4a;
+    color: #ffffff81;
     letter-spacing: 3px;
     text-shadow: 0 1px 0 rgba(255,255,255,0.5);
     margin-top: -5px;
@@ -340,7 +340,7 @@ body {
     }
     to {
         background: radial-gradient(circle, #ffffff 25%, #fff1b8 65%, #ffd466 100%);
-        box-shadow: 0 0 15px #ffdf7e, 0 0 25px #ffc107;
+        box-shadow: 0 0 15px #39f500, 0 0 25px #39f500;
         color: #4a3700;
     }
 }
