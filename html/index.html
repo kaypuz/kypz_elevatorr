@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kypz_elevator HUD</title>
+    <!-- Google Fonts: Orbitron for digital LED, Outfit for premium modern text -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for button icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="elevator-container">
+        <!-- Sol tık ipucu ve çıkış butonu arka planı karartma -->
+        <div id="backdrop"></div>
+
+        <div id="elevator-panel">
+            <!-- Üst Vida Detayları -->
+            <div class="screw top-left"></div>
+            <div class="screw top-right"></div>
+
+            <!-- 1. Üst Kısım: Dijital LED Gösterge Paneli -->
+            <div class="display-container">
+                <div class="brand-badge">Screen</div>
+                <div class="display-screen">
+                    <div class="led-indicator" id="led-light"></div>
+                    <div class="led-text" id="display-floor">LOBBY</div>
+                </div>
+            </div>
+
+            <!-- Asansör Başlığı -->
+            <div class="elevator-title" id="panel-title">ASANSÖR</div>
+
+            <!-- 2. Orta Kısım: Kat Butonları Izgarası (Dinamik doldurulacak) -->
+            <div class="buttons-grid" id="floors-container">
+                <!-- Javascript ile dinamik olarak oluşturulacak örnek şablon:
+                <div class="button-row">
+                    <div class="floor-plaque"><span>12</span><span class="braille">⠁⠃</span></div>
+                    <button class="elevator-btn" data-floor="12">12</button>
+                </div>
+                -->
+            </div>
+
+
+
+            <!-- Panel Altındaki Kapatma Talimatı -->
+            <div class="footer-hint">Çıkmak için [ESC] Basın</div>
+
+            <!-- Alt Vida Detayları -->
+            <div class="screw bottom-left"></div>
+            <div class="screw bottom-right"></div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
