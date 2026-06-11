@@ -185,6 +185,12 @@ const ledLight = document.getElementById("led-light");
 const floorsContainer = document.getElementById("floors-container");
 const panelTitle = document.getElementById("panel-title");
 
+// Kabin Overlay Elemanları
+const cabinOverlay = document.getElementById("elevator-cabin");
+const cabinFloorNum = document.getElementById("cabin-floor-num");
+const cabinArrowUp = document.querySelector(".cabin-arrow-up");
+const cabinArrowDown = document.querySelector(".cabin-arrow-down");
+
 let currentElevator = null;
 let currentFloorVal = null;
 let isTraveling = false;
@@ -203,6 +209,10 @@ window.addEventListener("message", function(event) {
         startTravelAnimation(data.floorId);
     } else if (data.action === "arrived") {
         arriveAtFloor(data.floorId);
+    } else if (data.action === "show_cabin") {
+        showCabinOverlay(data.floorPath, data.direction || "up", data.speed || 1500);
+    } else if (data.action === "hide_cabin") {
+        hideCabinOverlay();
     }
 });
 
@@ -221,6 +231,66 @@ document.getElementById("backdrop").addEventListener("dblclick", function() {
         axios_close();
     }
 });
+
+// ==========================================
+// ASANSÖR KABİNİ OVERLAY (3D CSS Çerçeve)
+// ==========================================
+
+let floorScrollInterval = null;
+
+function showCabinOverlay(floorPath, direction, speed) {
+    if (!cabinOverlay) return;
+    
+    // Yön okunu yak
+    cabinArrowUp.classList.remove("lit-up");
+    cabinArrowDown.classList.remove("lit-down");
+    
+    if (direction === "up") {
+        cabinArrowUp.classList.add("lit-up");
+    } else {
+        cabinArrowDown.classList.add("lit-down");
+    }
+    
+    // Eski animasyonu temizle
+    if (floorScrollInterval) {
+        clearInterval(floorScrollInterval);
+        floorScrollInterval = null;
+    }
+    
+    // Yol dizisinden kat numaralarını sırayla göster
+    if (Array.isArray(floorPath) && floorPath.length > 0) {
+        let currentStep = 0;
+        cabinFloorNum.textContent = floorPath[0];
+        
+        floorScrollInterval = setInterval(() => {
+            currentStep++;
+            if (currentStep < floorPath.length) {
+                cabinFloorNum.textContent = floorPath[currentStep];
+            } else {
+                clearInterval(floorScrollInterval);
+                floorScrollInterval = null;
+            }
+        }, speed);
+    } else if (floorPath) {
+        // Fallback
+        cabinFloorNum.textContent = floorPath;
+    }
+    
+    // Kabin overlay'ini aktifle (moving animasyonu ile)
+    cabinOverlay.classList.add("active");
+    cabinOverlay.classList.add("moving");
+}
+
+function hideCabinOverlay() {
+    if (!cabinOverlay) return;
+    if (floorScrollInterval) {
+        clearInterval(floorScrollInterval);
+        floorScrollInterval = null;
+    }
+    cabinOverlay.classList.remove("active", "moving");
+    cabinArrowUp.classList.remove("lit-up");
+    cabinArrowDown.classList.remove("lit-down");
+}
 
 // Asansör Arayüzünü Kur
 function setupElevator(elevator, title, floors, currentFloor) {
@@ -263,6 +333,7 @@ function setupElevator(elevator, title, floors, currentFloor) {
         button.className = "elevator-btn";
         button.dataset.id = floor.id;
         button.dataset.name = floor.name;
+        button.dataset.label = floor.label;
         button.textContent = floor.label;
 
         // Eğer oyuncu bu kattaysa butonu aktif et (glowing)
@@ -358,13 +429,20 @@ function arriveAtFloor(floorId) {
 
     // LED yeşile dönsün
     ledLight.className = "led-indicator";
+    
+    // Kabin overlay'ini kapat
+    hideCabinOverlay();
 }
 
 // Paneli Kapat ve Gizle
 function closeElevator() {
     panel.style.right = "-400px";
-    audio.stopMotorHum();
     audio.toggleAlarm(false);
+    
+    // Seyahat halindeyken motor sesini açık bırak (arriveAtFloor ile duracak)
+    if (!isTraveling) {
+        audio.stopMotorHum();
+    }
     
     setTimeout(() => {
         container.style.display = "none";
@@ -379,5 +457,4 @@ function axios_close() {
         body: JSON.stringify({})
     });
 }
-
 

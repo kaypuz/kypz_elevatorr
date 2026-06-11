@@ -22,7 +22,7 @@
 
             <!-- 1. Üst Kısım: Dijital LED Gösterge Paneli -->
             <div class="display-container">
-                <div class="brand-badge">Screen</div>
+                <div class="brand-badge">CATWATCH</div>
                 <div class="display-screen">
                     <div class="led-indicator" id="led-light"></div>
                     <div class="led-text" id="display-floor">LOBBY</div>
@@ -45,12 +45,35 @@
 
 
             <!-- Panel Altındaki Kapatma Talimatı -->
-            <div class="footer-hint">Çıkmak için [ESC] Basın</div>
+            <div class="footer-hint">Çıkmak için [ESC] veya Panele Çift Tıklayın</div>
 
             <!-- Alt Vida Detayları -->
             <div class="screw bottom-left"></div>
             <div class="screw bottom-right"></div>
         </div>
+    </div>
+
+    <!-- ASANSÖR KABİNİ 3D ÇERÇEVE OVERLAY -->
+    <div id="elevator-cabin">
+        <div class="cabin-ceiling">
+            <div class="cabin-light-fixture">
+                <div class="cabin-light-glow"></div>
+            </div>
+        </div>
+        <div class="cabin-wall cabin-wall-left"></div>
+        <div class="cabin-wall cabin-wall-right"></div>
+        <div class="cabin-floor-surface"></div>
+        <!-- Asansör kapı birleşim çizgisi -->
+        <div class="cabin-door-seam"></div>
+        <!-- Kat göstergesi -->
+        <div class="cabin-indicator">
+            <span id="cabin-floor-num">L</span>
+            <div class="cabin-arrow cabin-arrow-up">▲</div>
+            <div class="cabin-arrow cabin-arrow-down">▼</div>
+        </div>
+        <!-- Tutma barı -->
+        <div class="cabin-handrail cabin-handrail-left"></div>
+        <div class="cabin-handrail cabin-handrail-right"></div>
     </div>
 
     <!-- JS Scripts -->

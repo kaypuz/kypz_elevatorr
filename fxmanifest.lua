@@ -1,9 +1,10 @@
 fx_version 'cerulean'
 game 'gta5'
+this_is_a_map 'yes'
 
-author ' Kaypuz'
+author 'Kaypuz'
 description 'Premium HUD Elevator System'
-version '1.1.0'
+version '1.2.0'
 
 shared_scripts {
     'config.lua'

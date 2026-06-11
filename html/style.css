@@ -417,3 +417,131 @@ body {
     margin-top: 5px;
     text-shadow: 0 1px 0 rgba(255,255,255,0.4);
 }
+
+/* ============================================================
+   ASANSÖR KABİNİ OVERLAY (CCTV & Sinematik Geniş Ekran)
+   ============================================================ */
+
+#elevator-cabin {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    pointer-events: none;
+}
+
+#elevator-cabin.active {
+    display: block;
+    animation: cabin-fadein 0.6s ease forwards;
+}
+
+@keyframes cabin-fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ---- Üst Sinematik Bar ---- */
+.cabin-ceiling {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 10%;
+    background: #000000;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    z-index: 2;
+}
+
+/* ---- Zemin Sinematik Bar ---- */
+.cabin-floor-surface {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 10%;
+    background: #000000;
+    border-top: 2px solid rgba(255, 255, 255, 0.05);
+    z-index: 2;
+}
+
+/* ---- Gizlenen 2D Elemanlar ---- */
+.cabin-wall-left,
+.cabin-wall-right,
+.cabin-door-seam,
+.cabin-handrail,
+.cabin-light-fixture,
+.cabin-light-glow {
+    display: none;
+}
+
+/* ---- LED KAT GÖSTERGESİ (Resimdeki Tasarım) ---- */
+.cabin-indicator {
+    position: absolute;
+    top: 2.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0c0c0e;
+    border: 2px solid #222226;
+    border-radius: 8px;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.5);
+    font-family: 'Orbitron', monospace;
+    z-index: 4;
+}
+
+#cabin-floor-num {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ff3b30;
+    text-shadow: 0 0 10px rgba(255,59,48,0.8), 0 0 20px rgba(255,59,48,0.4);
+    letter-spacing: 2px;
+    min-width: 32px;
+    text-align: center;
+}
+
+.cabin-arrow {
+    font-size: 10px;
+    color: #1b1b1c;
+    transition: color 0.3s, text-shadow 0.3s;
+    line-height: 1;
+}
+
+.cabin-arrow.lit-up {
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0,255,136,0.8), 0 0 15px rgba(0,255,136,0.4);
+}
+
+.cabin-arrow.lit-down {
+    color: #ff3b30;
+    text-shadow: 0 0 8px rgba(255,59,48,0.8), 0 0 15px rgba(255,59,48,0.4);
+}
+
+/* ---- HAREKET ANİMASYONLARI ---- */
+#elevator-cabin.moving .cabin-arrow.lit-up {
+    animation: arrow-blink-up 0.5s infinite alternate;
+}
+
+#elevator-cabin.moving .cabin-arrow.lit-down {
+    animation: arrow-blink-down 0.5s infinite alternate;
+}
+
+@keyframes arrow-blink-up {
+    from { color: #1b1b1c; text-shadow: none; }
+    to { color: #00ff88; text-shadow: 0 0 8px rgba(0,255,136,0.8); }
+}
+
+@keyframes arrow-blink-down {
+    from { color: #1b1b1c; text-shadow: none; }
+    to { color: #ff3b30; text-shadow: 0 0 8px rgba(255,59,48,0.8); }
+}
+
+#elevator-cabin.moving {
+    animation: cabin-shake 0.12s infinite alternate;
+}
+
+@keyframes cabin-shake {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(0.4px); }
+}
