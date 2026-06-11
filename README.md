@@ -5,8 +5,8 @@
 - Restart your server!
 
 - ### Other Settings
-- `Config.UseCutscene` To use the Live 3D Elevator Cabin Cutscene.
-- `Config.UseCutscene` Transition time per floor in milliseconds.
+- `Config.UseCutscene` to use the Live 3D Elevator Cabin Cutscene.
+- `Config.UseCutscene` transition time per floor in milliseconds.
 
 
 
