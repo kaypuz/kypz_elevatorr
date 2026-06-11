@@ -12,10 +12,12 @@ Config.DrawDistance = 5.0 -- 3D metnin görünme mesafesi
 Config.InteractDistance = 2.0 -- Etkileşime girme mesafesi
 Config.InteractKey = 38 -- E Tuşu (INPUT_CONTEXT)
 
-Config.TravelDuration = 3500 -- Milisaniye cinsinden asansör seyahat süresi (ekranın kapalı kalacağı süre - UseCutscene false ise etkindir)
-
 Config.UseCutscene = true -- Canlı 3D Asansör Kabini Ara Sahnesi kullanılsın mı?
 Config.FloorTransitionSpeed = 1500 -- Milisaniye cinsinden kat basina gecis suresi (orn. 1500ms = her 1.5 saniyede bir kat degisir)
+
+Config.TravelDuration = 3500 -- Milisaniye cinsinden asansör seyahat süresi (ekranın kapalı kalacağı süre - UseCutscene false ise etkindir)
+
+
 
 
 
